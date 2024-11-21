@@ -1,0 +1,19 @@
+# Copyright (c) 2024, wael and contributors
+# For license information, please see license.txt
+import datetime
+import frappe
+from frappe import _
+from frappe.utils import today,add_to_date, get_datetime, getdate
+from frappe.model.document import Document
+from frappe import utils
+
+class CallTest(Document):
+
+	def validate(self):
+		
+		frappe.msgprint(_("This is the {0} ").format(self.employee))
+		d = frappe.db.sql( """select full_name From `tabCall Test` Where custom_date_1 < CURDATE() """ )
+		frappe.msgprint(_("This is the {0} ").format(d))
+		
+		
+		
